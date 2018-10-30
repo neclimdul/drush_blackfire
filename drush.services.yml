@@ -1,0 +1,5 @@
+services:
+  drush_blackfire.commands:
+    class: \Drupal\drush_blackfire\Commands\DrushBlackfireCommands
+    tags:
+      - { name: drush.command }
