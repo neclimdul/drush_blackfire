@@ -2,9 +2,11 @@
 
 namespace Drupal\drush_blackfire\Commands;
 
+use Blackfire\Client;
 use Consolidation\AnnotatedCommand\AnnotationData;
 use Consolidation\AnnotatedCommand\CommandData;
 use Drush\Commands\DrushCommands;
+use Drush\Drush;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
@@ -21,23 +23,21 @@ use Symfony\Component\Console\Input\InputInterface;
 class DrushBlackfireCommands extends DrushCommands {
 
   /**
+   * @var \Blackfire\Client
+   */
+  protected static $blackfire;
+
+  /**
+   * @var \Blackfire\Probe
+   */
+  protected static $probe;
+
+  /**
    * @hook option *
    *
    * @option bf Profile with blackfire.
    */
-  public function optionsetBlackfire($options = ['bf' => self::REQ]) {
-    echo 'option...';
-  }
-
-  /**
-   * Enable profiling via XHProf
-   *
-   * @hook post-command *
-   */
-  public function blackfirePost($result, CommandData $commandData) {
-    if (self::blackfireEnabled()) {
-      echo 'finish';
-    }
+  public function optionsetBlackfire($options = ['bf' => FALSE]) {
   }
 
   /**
@@ -46,12 +46,26 @@ class DrushBlackfireCommands extends DrushCommands {
    * @hook init *
    */
   public function blackfireInitialize(InputInterface $input, AnnotationData $annotationData) {
-    echo 'starting';
+    if ($input->hasOption('bf') && $input->getOption('bf') && class_exists(Client::class)) {
+      $this->logger()->debug('Starting blackfire probe...');
+      static::$blackfire = new Client();
+      static::$probe = static::$blackfire->createProbe();
+    }
   }
 
-
-  public static function blackfireEnabled() {
-    return true;
+  /**
+   * Finish profiling via blackfire.
+   *
+   * @hook post-command *
+   */
+  public function blackfirePost($result, CommandData $commandData) {
+    if (isset(static::$probe)) {
+      $this->logger()->debug('Finalizing blackfire probe...');
+      $profile = static::$blackfire->endProbe(static::$probe);
+      $this->logger()->notice(dt('Blackfire profile saved. !url', [
+        '!url' => $profile->getUrl(),
+      ]));
+    }
   }
 
 }
