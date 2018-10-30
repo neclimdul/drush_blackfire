@@ -6,7 +6,6 @@ use Blackfire\Client;
 use Consolidation\AnnotatedCommand\AnnotationData;
 use Consolidation\AnnotatedCommand\CommandData;
 use Drush\Commands\DrushCommands;
-use Drush\Drush;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
