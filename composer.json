@@ -1,6 +1,6 @@
 {
     "name": "drupal/drush_blackfire",
-    "description": "This extension provides new commands for Drush.",
+    "description": "This extension provides global options to drush to trigger blackfire profiling.",
     "type": "drupal-drush",
     "authors": [
         {
