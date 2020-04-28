@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\drush_blackfire\Commands;
+namespace Drush\Commands\drush_blackfire\Commands;
 
 use Blackfire\Client;
 use Consolidation\AnnotatedCommand\AnnotationData;
