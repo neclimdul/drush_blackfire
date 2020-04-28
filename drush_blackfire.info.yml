@@ -1,7 +1,0 @@
-name: Drush Blackfire
-type: module
-description: ''
-package: Drush
-core: 8.x
-hidden: false
-
