@@ -4,8 +4,8 @@
     "type": "drupal-drush",
     "authors": [
         {
-            "name": "Author name",
-            "email": "author@example.com"
+            "name": "James Gilliland",
+            "email": "neclimdul@gmail.com"
         }
     ],
     "require": {
