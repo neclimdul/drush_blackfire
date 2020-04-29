@@ -46,7 +46,7 @@ class DrushBlackfireCommands extends DrushCommands {
    * @hook init *
    */
   public function blackfireInitialize(InputInterface $input, AnnotationData $annotationData) {
-    if ($input->hasOption('bf') && $input->getOption('bf') && class_exists(Client::class)) {
+    if ($input->hasOption('bf') && $input->getOption('bf')) {
       $this->logger()->debug('Starting blackfire probe...');
       static::$blackfire = new Client();
       static::$probe = static::$blackfire->createProbe();
