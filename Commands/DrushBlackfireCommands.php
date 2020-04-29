@@ -6,6 +6,7 @@ use Blackfire\Client;
 use Consolidation\AnnotatedCommand\AnnotationData;
 use Consolidation\AnnotatedCommand\CommandData;
 use Drush\Commands\DrushCommands;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
@@ -36,7 +37,7 @@ class DrushBlackfireCommands extends DrushCommands {
    *
    * @option bf Profile with blackfire.
    */
-  public function optionsetBlackfire($options = ['bf' => FALSE]) {
+  public function optionsetBlackfire(Command $command, AnnotationData $annotationData) {
   }
 
   /**
