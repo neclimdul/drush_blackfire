@@ -1,5 +1,5 @@
 {
-    "name": "drupal/drush_blackfire",
+    "name": "neclimdul/drush_blackfire",
     "description": "This extension provides global options to drush to trigger blackfire profiling.",
     "type": "drupal-drush",
     "authors": [
